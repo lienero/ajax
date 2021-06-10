@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="colors.js"></script>
+    <script src="fetch/fetch.js"></script>
   </head>
 
   <body>
@@ -36,7 +37,25 @@
 
       fetch("list").then(function (response) {
         response.text().then(function (text) {
-          document.querySelector("#nav").innerHTML = text;
+          let items = text.split(",");
+          let i = 0;
+          let tags = "";
+          while (i < items.length) {
+            let item = items[i];
+            item = item.trim();
+            let tag =
+              '<li><a href="#!' +
+              item +
+              '" onclick="fetchPage(\'' +
+              item +
+              "')\">" +
+              item +
+              "</a></li>";
+            console.log;
+            tags = tags + tag;
+            i += 1;
+          }
+          document.querySelector("#nav").innerHTML = tags;
         });
       });
     </script>
