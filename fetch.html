@@ -10,6 +10,11 @@
       type="button"
       value="fetch"
       onclick="
+      // fetch(파일) : 파일을 서버가 응답하도록 요청
+      // then(함수) : 서버응답이 끝났을 때 함수를 실행한다.
+      // fetch는 비동기적인 코드이기 때문에 이것이 돌아가는 동안 다른 코드도 돌아간다.
+      // response 란 객체는 fetch를 통한 결과(status)가 나타나는 객체이다 (성공 : 200 실패 :404)
+      // 예 : if(response.status == 404) {}
     fetch('css').then(function(response){
         response.text().then(function(text){
             alert(text);
