@@ -1,0 +1,25 @@
+<p id="timezones"></p>
+<input type="button" id="execute" value="execute" />
+<script>
+  document.querySelector("input").addEventListener("click", function (event) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "./time2.php");
+    // onreadystatechange 이벤트는 서버와의 통신이 끝났을 때 호출되는 이벤트이다
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        // responseText 프로퍼티는 서버(/time.php)에서 리턴한 데이터를 담고 있다
+        var _tzs = xhr.responseText;
+        // var tzs = _tzs.split(",");
+        // JSON.parse() : 인자로 전달된 문사열을 자바스크립트의 데이터로 변환한다.
+        var tzs = JSON.parse(_tzs);
+        var _str = "";
+        for (var i = 0; i < tzs.length; i++) {
+          _str += "<li>" + tzs[i] + "</li>";
+        }
+        _str = "<ul>" + _str + "</ul>";
+        document.querySelector("#timezones").innerHTML = _str;
+      }
+    };
+    xhr.send();
+  });
+</script>
