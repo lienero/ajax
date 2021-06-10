@@ -12,7 +12,7 @@ document.querySelector('input').addEventListener('click', function(event){
         // 4는 통신이 완료되었음을 의미
         // status는 HTTP 통신의 결과를 의미하는데 200은 통신이 성공했음을 의미
         if(xhr.readyState === 4 && xhr.status === 200){
-            // esponseText 프로퍼티는 서버에서 전송한 데이터를 담고 있다
+            // responseText 프로퍼티는 서버에서 전송한 데이터를 담고 있다
             document.querySelector('#time').innerHTML = xhr.responseText;
         }
     }
