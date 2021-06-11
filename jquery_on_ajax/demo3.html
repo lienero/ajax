@@ -1,0 +1,20 @@
+<p id="timezones"></p>
+<input type="button" id="execute" value="execute" />
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+  $("#execute").click(function () {
+    $.ajax({
+      url: "./time3.php",
+      // dataType: 서버측에서 전송한 데이터를 어떤 형식의 데이터로 해석할 것인가를 지정한다.
+      dataType: "json",
+      success: function (data) {
+        var str = "";
+        for (var name in data) {
+          // data[name] == data[0], data[1]
+          str += "<li>" + data[name] + "</li>";
+        }
+        $("#timezones").html("<ul>" + str + "</ul>");
+      },
+    });
+  });
+</script>
